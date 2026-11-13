@@ -53,9 +53,9 @@ layers:
     layout:
       visibility: none
     paint:
-      line-color: "#3B5F88"
+      line-color: "#BCD7E6"
       line-width: 0.75
-      line-opacity: 0.7
+      line-opacity: 0.8
 
   - id: substations
     type: circle
@@ -66,7 +66,7 @@ layers:
       visibility: none
     paint:
       circle-radius: 2.5
-      circle-color: "#3B5F88"
+      circle-color: "#BCD7E6"
 
   - id: data-centres
     type: circle
@@ -106,7 +106,7 @@ layers:
         - ["get", "contested"]
         - 1
         - "#CF729B"
-        - "#3B5F88"
+        - "#FCFBFA"
       circle-stroke-color: "#FCFBFA"
       circle-stroke-width: 1
 
@@ -181,11 +181,11 @@ chapters:
       <p>Seven of the 17 contested sites were fought over grid capacity or
       power supply.</p>
       <p><span style="color:#CF729B">●</span> contested &nbsp;
-      <span style="color:#3B5F88">●</span> not contested &nbsp;
+      <span style="color:#BCD7E6">●</span> not contested &nbsp;
       larger dots = larger sites</p>
       <div style="display:grid;grid-template-columns:9.5rem 1fr 1.5rem;gap:6px 8px;align-items:center;font-size:15px;margin-top:16px">
-        <span>Council, regulator or statutory body</span><span style="height:8px;width:53%;background:#3B5F88"></span><span>9</span>
-        <span>Residents or a local campaign</span><span style="height:8px;width:47%;background:#3B5F88"></span><span>8</span>
+        <span>Council, regulator or statutory body</span><span style="height:8px;width:53%;background:#BCD7E6"></span><span>9</span>
+        <span>Residents or a local campaign</span><span style="height:8px;width:47%;background:#BCD7E6"></span><span>8</span>
         <span>Grid capacity or power supply</span><span style="height:8px;width:41%;background:#CF729B"></span><span>7</span>
         <span>No documented grounds</span><span style="height:8px;width:24%;background:#BEB6AC"></span><span>4</span>
       </div>
@@ -245,7 +245,7 @@ chapters:
       of renewable power made.</p>
       <div style="display:grid;grid-template-columns:9.5rem 1fr 2.5rem;gap:6px 8px;align-items:center;font-size:15px;margin-top:16px">
         <span>Wind today (2025)</span><span style="height:8px;width:40%;background:#99AD67"></span><span>40%</span>
-        <span>Government target (2030)</span><span style="height:8px;width:80%;background:#3B5F88"></span><span>80%</span>
+        <span>Government target (2030)</span><span style="height:8px;width:80%;background:#BCD7E6"></span><span>80%</span>
         <span>This atlas proposes</span><span style="height:8px;width:100%;background:#CF729B"></span><span>100%</span>
       </div>
       <p style="font-size:13px;color:#6B635C">FIG. 02 Renewable electricity
