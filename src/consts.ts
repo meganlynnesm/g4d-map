@@ -1,27 +1,14 @@
 import type { Metadata, Site, Socials } from "@types";
 
 export const SITE: Site = {
-  NAME: "Project Website",
-  EMAIL: "<your email address here>",
-  DESCRIPTION: "<A description of your website>",
+  NAME: "G4DP Narrative Atlas",
+  EMAIL: "mlm2399@columbia.edu",
+  DESCRIPTION: "A narrative atlas of data centres, power and renewable energy on the island of Ireland.",
 };
 
 export const HOME: Metadata = {
   TITLE: "Home",
-  DESCRIPTION: "<A description of your home page>",
+  DESCRIPTION: "Earth, Wind, Water - Wire: a narrative atlas of data centres on the island of Ireland.",
 };
 
-export const SOCIALS: Socials = [
-  {
-    NAME: "twitter-x",
-    HREF: "<your twitter handle here>",
-  },
-  {
-    NAME: "github",
-    HREF: "<your github url here>",
-  },
-  {
-    NAME: "linkedin",
-    HREF: "<your linkedin url here>",
-  },
-];
+export const SOCIALS: Socials = [];

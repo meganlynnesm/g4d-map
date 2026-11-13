@@ -7,30 +7,54 @@ import { url } from "@lib/utils";
 
 <PageLayout title={HOME.TITLE} description={HOME.DESCRIPTION}>
   <Container>
-    <h4 class="animate font-semibold text-black dark:text-white">
-      Boilerplate Astro website for presenting spatial narratives <span
-        class="text-xl">🗺️</span
-      >
-    </h4>
-    <div class="space-y-8">
+    <h1 class="animate font-semibold text-black dark:text-white text-3xl">
+      Earth, Wind, Water - Wire
+    </h1>
+    <p class="animate">A narrative atlas of data centres on the island of Ireland</p>
+
+    <div class="space-y-8 mt-8">
       <h2 class="font-semibold text-black dark:text-white">About</h2>
       <p>
-        This is a starting point for a website that tells a story with maps. It is built with <a href="https://astro.build/">Astro</a>, <a href="https://tailwindcss.com/">Tailwind CSS</a> and <a href="https://docs.maplibre-yaml.org/">maplibre-yaml</a>, which turns a YAML file into a <a href="https://maplibre.org/">MapLibre</a> map.
-        Every map on this site is a file in <b>src/maps/</b> or <b>src/stories/</b>: edit the YAML, not code.
+        In 2025, data centres used 23% of Ireland's metered electricity, up
+        from 5% in 2015 (Central Statistics Office). Most of them sit around
+        Dublin, where the grid is under strain. Meanwhile, in the west and
+        north, wind farms are switched off because the lines cannot carry
+        their power.
       </p>
-      <ul class="list-disc pl-6 space-y-4">
-        <li>
-          <a href={url("inline_maps")}>Inline maps</a> (<b>src/pages/inline_maps.mdx</b>): maps placed in a page between text and images, with popups, a legend, layer toggles, and a map beside text in two columns.
-        </li>
-        <li>
-          <a href={url("full_page_map")}>Full page map</a> (<b>src/pages/full_page_map.mdx</b>): one map that fills the window, with zoom buttons, a legend and a layer panel.
-        </li>
-        <li>
-          <a href={url("scrollytelling")}>Scrollytelling</a> (<b>src/pages/scrollytelling.mdx</b> and <b>src/stories/nyc.yaml</b>): a story map whose chapters move the camera and show and hide layers as you scroll.
-        </li>
-      </ul>
       <p>
-        To find the <code>center</code> and <code>zoom</code> for a map, move around <a href="https://labs.mapbox.com/location-helper/">this location helper</a> and copy the numbers.
+        This atlas follows data centres through the land, power and water
+        they draw on. It maps where they are, how they connect to the grid,
+        where they are contested and where clean power is being wasted. It
+        argues for a grid that reaches the whole country, so that new
+        development can use all of the renewable power the island makes.
+      </p>
+      <p>
+        <a href={url("contested_grounds")}><b>Read the story →</b></a>
+      </p>
+
+      <h2 class="font-semibold text-black dark:text-white">Chapters</h2>
+      <ul class="list-disc pl-6 space-y-2">
+        <li><b>Wired In:</b> the substations and high-voltage lines that serve the sites.</li>
+        <li><b>Extraction:</b> sites with permits to burn fuel on site.</li>
+        <li><b>Contest:</b> which sites were contested, and why.</li>
+        <li><b>Alternative Benefits:</b> Tallaght, where data centre waste heat warms public buildings.</li>
+        <li><b>Wasted Wind:</b> wind power turned down in the west, north and across the border.</li>
+        <li><b>Grow:</b> a grid built to use 100% of renewable power.</li>
+      </ul>
+
+      <h2 class="font-semibold text-black dark:text-white">Data</h2>
+      <p>
+        Central Statistics Office; Environmental Protection Agency
+        (greenhouse gas permits); EirGrid and SONI (curtailment reports and
+        grid planning); Government of Ireland (Climate Action Plan 2025);
+        Atlas of Data Center Politics; South Dublin County Council;
+        OpenStreetMap contributors. Full sources are listed at the end of
+        the story.
+      </p>
+
+      <p class="text-sm">
+        Made for GIS for Design Practices, Columbia GSAPP, Fall 2026. Built
+        with the course's <a href="https://github.com/design-practices/astro-maplibre-template">Astro maplibre template</a>.
       </p>
     </div>
   </Container>
