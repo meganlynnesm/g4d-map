@@ -19,6 +19,18 @@ config:
 # Every layer the story uses. A layer that a chapter reveals later starts
 # hidden with `layout: { visibility: none }`.
 layers: 
+  - id: wind-farms
+    type: circle
+    source:
+      type: geojson
+      url: "/data/wind.geojson"
+    layout:
+      visibility: none
+    paint:
+      circle-radius: 4
+      circle-color: "#99AD67"
+      circle-stroke-color: "#221E1C"
+      circle-stroke-width: 1
 
   - id: ghg-permits
     type: circle
@@ -70,6 +82,53 @@ layers:
       circle-stroke-color: "#FCFBFA"
       circle-stroke-width: 1
 
+  - id: data-centres-contest
+    type: circle
+    source:
+      type: geojson
+      url: "/data/sites.geojson"
+    filter: ["!=", ["get", "precision"], "county only"]
+    layout:
+      visibility: none
+    paint:
+      circle-radius:
+        - match
+        - ["get", "size_class"]
+        - 3
+        - 10
+        - 2
+        - 6
+        - 1
+        - 3.5
+        - 4
+      circle-color:
+        - match
+        - ["get", "contested"]
+        - 1
+        - "#CF729B"
+        - "#3B5F88"
+      circle-stroke-color: "#FCFBFA"
+      circle-stroke-width: 1
+
+  - id: tallaght-heat
+    type: circle
+    source:
+      type: geojson
+      data:
+        type: Feature
+        properties: { name: Tallaght District Heating Scheme }
+        geometry:
+          type: Point
+          coordinates: [-6.3746, 53.2886]
+    layout:
+      visibility: none
+    paint:
+      circle-radius: 14
+      circle-color: "#CF729B"
+      circle-opacity: 0.5
+      circle-stroke-color: "#221E1C"
+      circle-stroke-width: 2
+
 
 chapters:
   - id: intro
@@ -113,17 +172,113 @@ chapters:
       show: [ghg-permits]
       hide: [grid-lines, substations, data-centres]
 
-  - id: outro
-    title: Back to New York
+  - id: contest
+    title: "4. Contest"
     description: >-
-      <p><code>rotateAnimation: true</code> turns the camera slowly while this
-      chapter is on screen. Edit <code>src/stories/nyc.yaml</code> to write
-      your own story.</p>
-    center: [-73.99, 40.73]
-    zoom: 11
-    pitch: 50
+      <p>The bigger the data centre, the more likely it is to be contested:
+      6 of 12 hyperscale sites, 8 of 33 large and 1 of 11 small (size
+      classes as recorded by the Atlas of Data Center Politics).</p>
+      <p>Seven of the 17 contested sites were fought over grid capacity or
+      power supply.</p>
+      <p><span style="color:#CF729B">●</span> contested &nbsp;
+      <span style="color:#3B5F88">●</span> not contested &nbsp;
+      larger dots = larger sites</p>
+      <div style="display:grid;grid-template-columns:9.5rem 1fr 1.5rem;gap:6px 8px;align-items:center;font-size:15px;margin-top:16px">
+        <span>Council, regulator or statutory body</span><span style="height:8px;width:53%;background:#3B5F88"></span><span>9</span>
+        <span>Residents or a local campaign</span><span style="height:8px;width:47%;background:#3B5F88"></span><span>8</span>
+        <span>Grid capacity or power supply</span><span style="height:8px;width:41%;background:#CF729B"></span><span>7</span>
+        <span>No documented grounds</span><span style="height:8px;width:24%;background:#BEB6AC"></span><span>4</span>
+      </div>
+      <p style="font-size:13px;color:#6B635C">FIG. 01 Why the 17 contested sites
+      were contested. Source: each site's documented reason, compiled from the Atlas of Data Center
+      Politics and its cited sources, categorised by Megan Mackin.</p>
+    center: [-7.9, 53.4]
+    zoom: 6.4
+    alignment: right
+    layers:
+      show: [data-centres-contest]
+      hide: [ghg-permits]
+
+  - id: benefit
+    title: "5. Alternative Benefits"
+    description: >-
+      <p>But the data centres are not always in the business of 'extraction'.
+      In Tallaght, waste heat from a nearby Meta data centre warms public
+      buildings through a district heating network owned by South Dublin
+      County Council.</p>
+    center: [-6.3746, 53.2886]
+    zoom: 14
+    pitch: 45
+    alignment: right
+    layers:
+      show: [tallaght-heat]
+      hide: [data-centres-contest]
+
+  - id: waste
+    title: "6. Wasted Wind"
+    description: >-
+      <p>In the same essence, renewable energy is not always beneficial.
+      In 2025, 11.4% of wind energy in Ireland and 22.0% in Northern
+      Ireland was turned down because the grid couldn't use it (local lines unable to carry the power!): 2,139 GWh
+      across the island. The North West and the Midlands lost the most
+      (EirGrid and SONI).</p>
+      <p>So why burn gas in Dublin while wind is wasted here?</p>
+    center: [-7.9, 53.9]
+    zoom: 6.8
+    pitch: 30
+    animation: easeTo #animation assisted with Claude
+    alignment: left
+    layers:
+      show: [wind-farms, grid-lines]
+      hide: [tallaght-heat]
+
+  - id: grow
+    title: "7. Grow"
+    description: >-
+      <p>Wind made 40% of Ireland's electricity in 2025, and the government
+      target is 80% renewable by 2030. Yet in 2025, 2,139 GWh of wind across
+      the island was turned down because the grid could not carry it.</p>
+      <p>EirGrid's grid plan looked at placing data centres near wind in the
+      west, south and north west. Instead, it chose to plan the grid around
+      where new wind and solar farms connect. This atlas argues for a grid
+      that reaches the whole country, with new development using every unit
+      of renewable power made.</p>
+      <div style="display:grid;grid-template-columns:9.5rem 1fr 2.5rem;gap:6px 8px;align-items:center;font-size:15px;margin-top:16px">
+        <span>Wind today (2025)</span><span style="height:8px;width:40%;background:#99AD67"></span><span>40%</span>
+        <span>Government target (2030)</span><span style="height:8px;width:80%;background:#3B5F88"></span><span>80%</span>
+        <span>This atlas proposes</span><span style="height:8px;width:100%;background:#CF729B"></span><span>100%</span>
+      </div>
+      <p style="font-size:13px;color:#6B635C">FIG. 02 Renewable electricity
+      now, the official target and this atlas's proposal. The 100% bar is a
+      proposal, not an official target. Sources: CSO fuel mix 2025; Climate
+      Action Plan 2025; EirGrid, Shaping Our Electricity Future.</p>
+    center: [-7.9, 53.6]
+    zoom: 6.2
+    alignment: left
+    layers:
+      show: [grid-lines, wind-farms, data-centres]
+
+  - id: outro
+    title: "Earth, Wind, Water - Wire"
+    description: >-
+      <p>Build the grid towards the wind, not from the wind towards Dublin.</p>
+      <p><i>Tóg an eangach i dtreo na gaoithe, ní ón ngaoth i dtreo Bhaile Átha Cliath.</i></p>
+    center: [-7.6, 53.6]
+    zoom: 6
     rotateAnimation: true
     alignment: full
+    layers:
+      show: [data-centres-contest, wind-farms]
+      hide: [grid-lines]
+
+
 
 footer: >-
-  <p>Data: Sources to Add</p>
+  <p>Data: Central Statistics Office (data centre electricity use;
+  electricity supply by source 2025); EPA (greenhouse gas permits); EirGrid
+  and SONI (Annual Renewable Constraint and Curtailment Report 2025); data
+  centre sites and contested status from my Assignment 03 dataset, with size
+  classes as recorded by the Atlas of Data Center Politics; South Dublin
+  County Council (Tallaght District Heating Scheme); OpenStreetMap
+  contributors (grid lines, substations, wind farms). Basemap: OpenFreeMap,
+  © OpenStreetMap contributors.</p>
