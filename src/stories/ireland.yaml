@@ -22,13 +22,14 @@ layers: []
 
 chapters:
   - id: intro
-    title: Introduction
+    title: "Earth, Wind, Water, Wire"
     description: >-
-      <p>Welcome to the scrollytelling example. Each chapter sets the camera
-      with <code>center</code>, <code>zoom</code>, <code>pitch</code> and
-      <code>bearing</code>. Scroll down.</p>
-    center: [-74.0060, 40.7128]
-    zoom: 10
+      <p>Data centres on the island of Ireland extract from its land; through siting, water usage and
+      power through the electricity grid. This story maps where they
+      are, how they connect to the grid, what resources they use, and where
+      they could be built and powered differently.</p>
+    center: [-7.6, 53.6]
+    zoom: 6
     alignment: center
 
   - id: squirrels
@@ -89,5 +90,4 @@ chapters:
     alignment: full
 
 footer: >-
-  <p>Data: 2018 Central Park Squirrel Census (NYC Open Data). Basemap:
-  OpenFreeMap, © OpenStreetMap contributors.</p>
+  <p>Data: Sources to Add</p>
