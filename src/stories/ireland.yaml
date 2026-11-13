@@ -11,7 +11,7 @@ markerColor: "#CF729B"
 
 # The map when the page opens.
 config:
-  mapStyle: "https://tiles.openfreemap.org/styles/positron"
+  mapStyle: "https://tiles.openfreemap.org/styles/dark"
   center: [-7.6, 53.6]
   zoom: 6
   interactive: false   # scrolling moves the story, not the map
