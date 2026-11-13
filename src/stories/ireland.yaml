@@ -7,7 +7,7 @@ type: scrollytelling
 id: ireland-story
 theme: light           # chapter cards: light or dark
 showMarkers: true      # a dot per chapter at the right edge; click one to jump
-markerColor: "#D6338A"
+markerColor: "#CF729B"
 
 # The map when the page opens.
 config:
@@ -18,64 +18,100 @@ config:
 
 # Every layer the story uses. A layer that a chapter reveals later starts
 # hidden with `layout: { visibility: none }`.
-layers: []
+layers: 
+
+  - id: ghg-permits
+    type: circle
+    source:
+      type: geojson
+      url: "/data/ghg-permits.geojson"
+    layout:
+      visibility: none
+    paint:
+      circle-radius: 7
+      circle-color: "#CF729B"
+      circle-stroke-color: "#221E1C"
+      circle-stroke-width: 2
+
+  - id: grid-lines
+    type: line
+    source:
+      type: geojson
+      url: "/data/grid-lines.geojson"
+    layout:
+      visibility: none
+    paint:
+      line-color: "#3B5F88"
+      line-width: 0.75
+      line-opacity: 0.7
+
+  - id: substations
+    type: circle
+    source:
+      type: geojson
+      url: "/data/substations.geojson"
+    layout:
+      visibility: none
+    paint:
+      circle-radius: 2.5
+      circle-color: "#3B5F88"
+
+  - id: data-centres
+    type: circle
+    source:
+      type: geojson
+      url: "/data/sites.geojson"
+    filter: ["!=", ["get", "precision"], "county only"]
+    layout:
+      visibility: none
+    paint:
+      circle-radius: 5
+      circle-color: "#CF729B"
+      circle-stroke-color: "#FCFBFA"
+      circle-stroke-width: 1
+
 
 chapters:
   - id: intro
-    title: "Earth, Wind, Water, Wire"
+    title: "Earth, Wind, Water - Wire"
     description: >-
       <p>Data centres on the island of Ireland extract from its land; through siting, water usage and
       power through the electricity grid. This story maps where they
       are, how they connect to the grid, what resources they use, and where
       they could be built and powered differently.</p>
-    center: [-7.6, 53.6]
-    zoom: 6
-    alignment: center
-
-  - id: squirrels
-    title: Squirrels in Central Park
-    description: >-
-      <p>Now we zoom in, and this chapter turns on a layer loaded from a GeoJSON
-      file in <code>public/data/</code> with
-      <code>layers: { show: [squirrels] }</code>.</p>
-    center: [-73.96778, 40.78376]
-    zoom: 14
-    bearing: 20
+    center: [-6.33, 53.35]
+    zoom: 9.5
     alignment: left
     layers:
-      show: [squirrels]
+      show: [data-centres]
 
-  - id: park
-    title: A polygon layer
+  - id: wired
+    title: "2. Wired IN"
     description: >-
-      <p>This chapter hides the squirrels again and shows a polygon written
-      straight into the YAML. The camera tilts (<code>pitch: 45</code>) and
-      turns to line up with the park, and <code>animation: easeTo</code> moves
-      it without the zoom-out arc of the default <code>flyTo</code>.</p>
-    center: [-73.9654, 40.7829]
-    zoom: 13
-    pitch: 45
-    bearing: -61
-    animation: easeTo
+      <p>Each site needs a high-voltage connection. Substations, where
+      electricity is stepped down for local use, cluster where the data
+      centres are.</p>
+    center: [-6.6, 53.45]
+    zoom: 8
+    alignment: left
+    layers:
+      show: [grid-lines, substations, data-centres]
+
+  - id: extraction
+    title: "3. Extraction"
+    description: >-
+      <p>In 2025, 47% of Ireland's electricity came from gas and 40% from
+      wind (Central Statistics Office). Where the Dublin grid can't supply
+      more, data centres install their own generators.</p>
+      <p>Each pink dot is a data centre installation holding an EPA permit
+      to burn fuel on-site, mostly backup diesel and gas. A permit shows the
+      capacity to burn fuel but not how often it is used.</p>
+    center: [-6.38, 53.35]
+    zoom: 10
     alignment: right
     layers:
-      show: [central-park]
-      hide: [squirrels]
-
-  - id: mississippi
-    title: Pictures in a chapter
-    description: >-
-      <p>A chapter can show an image above its text with <code>image:</code>,
-      a file in <code>public/img/</code>. This is Harold Fisk's 1944 map of the
-      Mississippi's ancient courses, near where the map has flown to.</p>
-    image: "/img/fisk02.jpg"
-    center: [-89.53, 36.59]
-    zoom: 9
-    pitch: 30
-    bearing: -10
-    alignment: left
-    layers:
-      hide: [central-park]
+      show: [ghg-permits]
+      hide: [grid-lines, substations, data-centres]
 
   - id: outro
     title: Back to New York
